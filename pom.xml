@@ -217,7 +217,7 @@
 										<artifactId>maven-dependency-plugin</artifactId>
 										<versionRange>[1.0.0,)</versionRange>
 										<goals>
-											<goal>unpack</goal>
+<!--											<goal>unpack</goal>-->
 											<goal>copy-dependencies</goal>
 											<goal>build-classpath</goal>
 										</goals>
