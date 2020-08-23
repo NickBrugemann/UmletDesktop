@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.baselet.control.basics.Line1D;
 import com.baselet.control.basics.geom.PointDouble;
+import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.AlignVertical;
 import com.baselet.diagram.draw.DrawHandler;
@@ -49,8 +50,8 @@ public class InteractionUse implements LifelineSpanningTickSpanningOccurrence {
 
 		drawHandler.drawRectangle(topLeft.x, topLeft.y, width, height);
 		PointDouble pentagonSize = PentagonDrawingHelper.draw(drawHandler, HEADER_TEXT, width, topLeft);
-		TextSplitter.drawText(drawHandler, textLines, topLeft.x + pentagonSize.x + TEXT_X_PADDING,
-				topLeft.y, width - (pentagonSize.x + TEXT_X_PADDING) * 2, height,
+		TextSplitter.drawText(drawHandler, textLines, new Rectangle(topLeft.x + pentagonSize.x + TEXT_X_PADDING,
+				topLeft.y, width - (pentagonSize.x + TEXT_X_PADDING) * 2, height),
 				AlignHorizontal.CENTER, AlignVertical.CENTER);
 
 		for (Lifeline ll : coveredLifelines) {

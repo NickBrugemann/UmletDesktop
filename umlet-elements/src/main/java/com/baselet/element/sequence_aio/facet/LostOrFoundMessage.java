@@ -1,5 +1,6 @@
 package com.baselet.element.sequence_aio.facet;
 
+import com.baselet.control.basics.geom.Rectangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -99,8 +100,8 @@ public class LostOrFoundMessage implements LifelineOccurrence {
 		}
 		drawHandler.setBackgroundColor(oldBg);
 
-		TextSplitter.drawText(drawHandler, textLines, lineXStart, topLeft.y,
-				lineXEnd - lineXStart, size.y / 2, AlignHorizontal.CENTER, AlignVertical.BOTTOM);
+		TextSplitter.drawText(drawHandler, textLines, new Rectangle(lineXStart, topLeft.y,
+				lineXEnd - lineXStart, size.y / 2), AlignHorizontal.CENTER, AlignVertical.BOTTOM);
 		PointDouble arrowPoint = new PointDouble(lineXEnd, centerY);
 		Line line = new Line(new PointDouble(lineXStart, centerY), arrowPoint);
 		drawHandler.drawLine(line);

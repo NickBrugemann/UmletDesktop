@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.baselet.control.basics.Line1D;
+import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.AlignVertical;
 import com.baselet.diagram.draw.DrawHandler;
@@ -50,7 +51,7 @@ public class Continuation implements LifelineSpanningTickSpanningOccurrence {
 		drawHandler.drawArc(leftX + width, topY, ROUND_PART_WIDTH * 2, height, 270, 180, true);
 		drawHandler.drawLine(leftX + ROUND_PART_WIDTH, topY, leftX + width + ROUND_PART_WIDTH, topY);
 		drawHandler.drawLine(leftX + ROUND_PART_WIDTH, topY + height, leftX + width + ROUND_PART_WIDTH, topY + height);
-		TextSplitter.drawText(drawHandler, textLines, leftX + ROUND_PART_WIDTH, topY, width, height,
+		TextSplitter.drawText(drawHandler, textLines, new Rectangle(leftX + ROUND_PART_WIDTH, topY, width, height),
 				AlignHorizontal.CENTER, AlignVertical.CENTER);
 
 		for (Lifeline ll : coveredLifelines) {

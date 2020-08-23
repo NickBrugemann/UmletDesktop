@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
+import com.baselet.control.basics.geom.Rectangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,42 +64,42 @@ public class TextSplitter {
 	 * @param hAlignment
 	 * @param vAlignment
 	 */
-	public static void drawText(DrawHandler drawer, String[] textLines, double topLeftX, double topLeftY, double width, double height, AlignHorizontal hAlignment, AlignVertical vAlignment) {
-		double textHeight = getSplitStringHeight(textLines, width, drawer);
-		if (textHeight > height) {
+	public static void drawText(DrawHandler drawer, String[] textLines, Rectangle rectangle, AlignHorizontal hAlignment, AlignVertical vAlignment) {
+		double textHeight = getSplitStringHeight(textLines, rectangle.width, drawer);
+		if (textHeight > rectangle.height) {
 			throw new IllegalArgumentException("The text needs more height then specified in the parameter");
 		}
 		switch (vAlignment) {
 			case TOP:
 				break;
 			case CENTER:
-				topLeftY += (height - textHeight) / 2.0;
+				rectangle.y += (rectangle.height - textHeight) / 2.0;
 				break;
 			case BOTTOM:
-				topLeftY += height - textHeight;
+				rectangle.y += rectangle.height - textHeight;
 				break;
 			default:
 				log.error("Encountered unhandled enumeration value '" + vAlignment + "'.");
 				break;
 		}
-		topLeftY += drawer.textHeightMax();
+		rectangle.y += drawer.textHeightMax();
 		switch (hAlignment) {
 			case LEFT:
 				break;
 			case CENTER:
-				topLeftX += width / 2.0;
+				rectangle.x += rectangle.width / 2.0;
 				break;
 			case RIGHT:
-				topLeftX += width;
+				rectangle.x += rectangle.width;
 				break;
 			default:
 				log.error("Encountered unhandled enumeration value '" + hAlignment + "'.");
 				break;
 		}
 		for (String l : textLines) {
-			for (StringStyle wl : splitStringAlgorithm(l, width, drawer)) {
-				drawer.print(wl, topLeftX, topLeftY, hAlignment);
-				topLeftY += drawer.textHeightMaxWithSpace();
+			for (StringStyle wl : splitStringAlgorithm(l, rectangle.width, drawer)) {
+				drawer.print(wl, rectangle.x, rectangle.y, hAlignment);
+				rectangle.y += drawer.textHeightMaxWithSpace();
 			}
 		}
 

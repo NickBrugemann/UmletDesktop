@@ -2,6 +2,7 @@ package com.baselet.element.sequence_aio.facet;
 
 import com.baselet.control.basics.Line1D;
 import com.baselet.control.basics.geom.PointDouble;
+import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.AlignVertical;
 import com.baselet.diagram.draw.DrawHandler;
@@ -27,7 +28,7 @@ public class TextOnLifeline implements LifelineOccurrence {
 		double height = TextSplitter.getSplitStringHeight(lines, size.x, drawHandler);
 		double topY = topLeft.y + (size.y - height) / 2;
 		Line1D interruptedLifeline = new Line1D(topY, topY + height);
-		TextSplitter.drawText(drawHandler, lines, topLeft.x, topY, size.x, height,
+		TextSplitter.drawText(drawHandler, lines, new Rectangle(topLeft.x, topY, size.x, height),
 				AlignHorizontal.CENTER, AlignVertical.CENTER);
 		return interruptedLifeline;
 

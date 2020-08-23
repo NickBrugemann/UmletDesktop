@@ -7,7 +7,7 @@ public enum Direction {
 		return this == LEFT || this == RIGHT;
 	}
 
-	public Direction invert() {
+	public Direction invert() throws MissingInvertMappingException {
 		switch (this) {
 			case LEFT:
 				return RIGHT;
@@ -18,7 +18,13 @@ public enum Direction {
 			case DOWN:
 				return UP;
 			default:
-				throw new RuntimeException("missing invert mapping");
+				throw new MissingInvertMappingException("missing invert mapping", this);
+		}
+	}
+
+	class MissingInvertMappingException extends Exception{
+		MissingInvertMappingException(String message, Direction direction){
+			super(message + " missing invert mapping with direction: " + direction);
 		}
 	}
 }

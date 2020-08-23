@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
+import com.baselet.control.basics.geom.Rectangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -521,14 +522,14 @@ public class Lifeline {
 			y += HEAD_VERTICAL_BORDER_PADDING;
 			height -= HEAD_VERTICAL_BORDER_PADDING * 2;
 			// draw Text in x,y with width,height
-			TextSplitter.drawText(drawHandler, text, x, y, width, height, AlignHorizontal.CENTER, AlignVertical.CENTER);
+			TextSplitter.drawText(drawHandler, text, new Rectangle(x, y, width, height), AlignHorizontal.CENTER, AlignVertical.CENTER);
 		}
 		else if (headType == LifelineHeadType.ACTOR) {
 			DrawHelper.drawActor(drawHandler, (int) (x + width / 2.0), (int) y, ACTOR_DIMENSION);
 			y += ACTOR_SIZE.y;
 			height -= ACTOR_SIZE.y;
 			// draw Text in x,y with width,height
-			TextSplitter.drawText(drawHandler, text, x, y, width, height, AlignHorizontal.CENTER, AlignVertical.BOTTOM);
+			TextSplitter.drawText(drawHandler, text, new Rectangle(x, y, width, height), AlignHorizontal.CENTER, AlignVertical.BOTTOM);
 		}
 		else {
 			log.error("Encountered unhandled enumeration value '" + headType + "'.");

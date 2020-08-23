@@ -26,7 +26,9 @@ public class BarPlot extends AbstractPlot {
 			if (!plotState.containsKey(PlotConstants.KEY_INT_MIN_VALUE)) {
 				plot.setMinValue(0.0);
 			}
-		} catch (IOException e) {}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		try {
 			if (!plotState.containsKey(PlotConstants.KEY_INT_MAX_VALUE)) {
 				plot.setMaxValue(0.0);

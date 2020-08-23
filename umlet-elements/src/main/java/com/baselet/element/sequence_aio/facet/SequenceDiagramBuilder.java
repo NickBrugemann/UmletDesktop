@@ -26,6 +26,7 @@ public class SequenceDiagramBuilder {
 	private final String DEFAULT_ID_PREFIX = "id";
 	private final SequenceDiagram dia;
 	private final Map<Lifeline, LifelineState> currentLifelineState;
+	private final String ERROR_ON_LIFELINE = "Error on lifeline";
 
 	/** if true no default ids are generated and every lifeline needs an id */
 	private boolean overrideDefaultIds;
@@ -150,7 +151,7 @@ public class SequenceDiagramBuilder {
 		try {
 			getLifelineException(id).addLifelineOccurrenceAtTick(occurrence, currentTick);
 		} catch (SequenceDiagramCheckedException ex) {
-			throw new SequenceDiagramException("Error on lifeline '" + id + "': " + ex.getMessage(), ex);
+			throw new SequenceDiagramException(ERROR_ON_LIFELINE+" '" + id + "': " + ex.getMessage(), ex);
 		}
 	}
 
@@ -178,7 +179,7 @@ public class SequenceDiagramBuilder {
 			lifeline.addLifelineOccurrenceAtTick(new Coregion(lifeline, currentTick, start), currentTick);
 			lifelineState.coregionActive = start;
 		} catch (SequenceDiagramCheckedException ex) {
-			throw new SequenceDiagramException("Error on lifeline '" + id + "': " + ex.getMessage(), ex);
+			throw new SequenceDiagramException(ERROR_ON_LIFELINE+" '" + id + "': " + ex.getMessage(), ex);
 		}
 	}
 
@@ -207,7 +208,7 @@ public class SequenceDiagramBuilder {
 				throw new SequenceDiagramException("On lifeline " + lifelineId + " two executionspecifications overlap, this is not possible.");
 			}
 			if (!lifeline.isCreatedOnStart() && (lifeline.getCreated() == null || lifeline.getCreated() >= currentTick)) {
-				throw new SequenceDiagramException("Error on lifeline '" + lifelineId + "': the lifeline can not contain executionspecifications before it is created.");
+				throw new SequenceDiagramException(ERROR_ON_LIFELINE+" '" + lifelineId + "': the lifeline can not contain executionspecifications before it is created.");
 			}
 			lifelineState.execSpecStartTickStack.addFirst(currentTick);
 		}

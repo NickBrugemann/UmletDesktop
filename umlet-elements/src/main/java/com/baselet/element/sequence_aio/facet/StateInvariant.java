@@ -2,6 +2,7 @@ package com.baselet.element.sequence_aio.facet;
 
 import com.baselet.control.basics.Line1D;
 import com.baselet.control.basics.geom.PointDouble;
+import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.AlignVertical;
 import com.baselet.diagram.draw.DrawHandler;
@@ -48,11 +49,11 @@ public class StateInvariant implements LifelineOccurrence {
 			drawHandler.drawArc(topLeft.x + size.x - ROUND_PART_WIDTH * 2, topY, ROUND_PART_WIDTH * 2, height, 270, 180, true);
 			drawHandler.drawLine(topLeft.x + ROUND_PART_WIDTH, topY, topLeft.x + size.x - ROUND_PART_WIDTH, topY);
 			drawHandler.drawLine(topLeft.x + ROUND_PART_WIDTH, topY + height, topLeft.x + size.x - ROUND_PART_WIDTH, topY + height);
-			TextSplitter.drawText(drawHandler, lines, topLeft.x + ROUND_PART_WIDTH * (1 - ROUND_PART_TEXT_PERCENTAGE), topY,
-					size.x - ROUND_PART_WIDTH * (1 - ROUND_PART_TEXT_PERCENTAGE) * 2, height, AlignHorizontal.CENTER, AlignVertical.CENTER);
+			TextSplitter.drawText(drawHandler, lines, new Rectangle(topLeft.x + ROUND_PART_WIDTH * (1 - ROUND_PART_TEXT_PERCENTAGE), topY,
+					size.x - ROUND_PART_WIDTH * (1 - ROUND_PART_TEXT_PERCENTAGE) * 2, height), AlignHorizontal.CENTER, AlignVertical.CENTER);
 		}
 		else if (style == StateInvariantStyle.CURLY_BRACKETS) {
-			TextSplitter.drawText(drawHandler, lines, topLeft.x, topY, size.x, height,
+			TextSplitter.drawText(drawHandler, lines, new Rectangle(topLeft.x, topY, size.x, height),
 					AlignHorizontal.CENTER, AlignVertical.CENTER);
 		}
 		return interruptedLifeline;

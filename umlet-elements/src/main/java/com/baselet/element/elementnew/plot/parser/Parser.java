@@ -112,9 +112,9 @@ public class Parser {
 		else {
 			DataSet dataset = null;
 			if (datasetId.startsWith("#")) {
-				String datasetNr = datasetId.substring(1);
+				String dsNr = datasetId.substring(1);
 				for (DataSet tempDataset : datasetList) {
-					if (datasetNr.equals(String.valueOf(tempDataset.getNr()))) {
+					if (dsNr.equals(String.valueOf(tempDataset.getNr()))) {
 						dataset = tempDataset;
 					}
 				}
@@ -147,11 +147,10 @@ public class Parser {
 	private void createDatasetObject(String[] args, ListIterator<String> inputIterator) {
 		int lineNr = inputIterator.nextIndex();
 		String datasetId = null;
-		if (args != null) {
-			if (args.length > 1) {
+		if (args != null && args.length > 1){
 				datasetId = args[1];
 				/* handle further parameters here */
-			}
+
 		}
 		DataSet newDataset = new DataSet(datasetId, datasetNr++, lineNr);
 		while (inputIterator.hasNext()) {

@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.baselet.control.basics.Line1D;
 import com.baselet.control.basics.geom.PointDouble;
+import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.AlignVertical;
 import com.baselet.control.enums.LineType;
@@ -159,10 +160,10 @@ public class CombinedFragment implements LifelineSpanningTickSpanningOccurrence,
 			textHeight += CONSTRAINT_Y_PADDING * 2;
 			constraintTopY += (constraintBottomY - constraintTopY - textHeight) / 2;
 			TextSplitter.drawText(drawHandler, firstIntConst.textLines,
-					drawingInfo.getHDrawingInfo(firstIntConst.affectedLifeline).getSymmetricHorizontalStart(startTick),
+					new Rectangle(drawingInfo.getHDrawingInfo(firstIntConst.affectedLifeline).getSymmetricHorizontalStart(startTick),
 					constraintTopY,
 					drawingInfo.getHDrawingInfo(firstIntConst.affectedLifeline).getSymmetricWidth(startTick),
-					textHeight, AlignHorizontal.CENTER, AlignVertical.CENTER);
+					textHeight), AlignHorizontal.CENTER, AlignVertical.CENTER);
 			drawingInfo.getDrawingInfo(firstIntConst.affectedLifeline).addInterruptedArea(
 					new Line1D(constraintTopY, constraintTopY + textHeight));
 		}
@@ -300,8 +301,8 @@ public class CombinedFragment implements LifelineSpanningTickSpanningOccurrence,
 					double textHeight = TextSplitter.getSplitStringHeight(textLines, size.x, drawHandler);
 					Line1D interruptedArea = new Line1D(topLeft.y + (size.y - textHeight) / 2 - CONSTRAINT_Y_PADDING,
 							topLeft.y + (size.y - textHeight) / 2 + textHeight + CONSTRAINT_Y_PADDING);
-					TextSplitter.drawText(drawHandler, textLines, topLeft.x, interruptedArea.getLow() + CONSTRAINT_Y_PADDING,
-							size.x, textHeight, AlignHorizontal.CENTER, AlignVertical.CENTER);
+					TextSplitter.drawText(drawHandler, textLines, new Rectangle(topLeft.x, interruptedArea.getLow() + CONSTRAINT_Y_PADDING,
+							size.x, textHeight), AlignHorizontal.CENTER, AlignVertical.CENTER);
 					return interruptedArea;
 				}
 			}

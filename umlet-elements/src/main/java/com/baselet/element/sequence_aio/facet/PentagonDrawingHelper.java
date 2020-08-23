@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import com.baselet.control.basics.Line1D;
 import com.baselet.control.basics.geom.PointDouble;
+import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.AlignVertical;
 import com.baselet.control.enums.LineType;
@@ -113,8 +114,8 @@ public class PentagonDrawingHelper {
 			}
 			textWidth += drawHandler.textWidth("n");
 		}
-		TextSplitter.drawText(drawHandler, textLines, topLeft.x + HEADER_TEXT_X_PADDING, topLeft.y, textWidth,
-				height, AlignHorizontal.LEFT, AlignVertical.CENTER);
+		TextSplitter.drawText(drawHandler, textLines, new Rectangle(topLeft.x + HEADER_TEXT_X_PADDING, topLeft.y, textWidth,
+				height), AlignHorizontal.LEFT, AlignVertical.CENTER);
 		LineType oldLt = drawHandler.getLineType();
 		drawHandler.setLineType(LineType.SOLID);
 		double slopeStartX = topLeft.x + textWidth + HEADER_TEXT_X_PADDING * 2;

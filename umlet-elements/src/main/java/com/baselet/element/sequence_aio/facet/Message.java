@@ -3,6 +3,7 @@ package com.baselet.element.sequence_aio.facet;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.baselet.control.basics.geom.Rectangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -165,8 +166,8 @@ public class Message implements LifelineSpanningTickSpanningOccurrence {
 			hAlignment = AlignHorizontal.CENTER;
 		}
 		topLeftX += LIFELINE_TEXT_PADDING;
-		TextSplitter.drawText(drawHandler, textLines, topLeftX, send.y - height,
-				Math.abs(send.x - receive.x) - LIFELINE_TEXT_PADDING * 2, height, hAlignment, AlignVertical.BOTTOM);
+		TextSplitter.drawText(drawHandler, textLines, new Rectangle(topLeftX, send.y - height,
+				Math.abs(send.x - receive.x) - LIFELINE_TEXT_PADDING * 2, height), hAlignment, AlignVertical.BOTTOM);
 	}
 
 	/**
@@ -187,8 +188,8 @@ public class Message implements LifelineSpanningTickSpanningOccurrence {
 		rightBorderX += SELF_MESSAGE_TEXT_PADDING;
 		double lifelineXEnd = Math.min(hInfo.getHDrawingInfo(to).getSymmetricHorizontalEnd(sendTick),
 				hInfo.getHDrawingInfo(to).getSymmetricHorizontalEnd(sendTick + duration));
-		TextSplitter.drawText(drawHandler, textLines, rightBorderX, send.y,
-				lifelineXEnd - rightBorderX, receive.y - send.y, AlignHorizontal.LEFT, AlignVertical.CENTER);
+		TextSplitter.drawText(drawHandler, textLines, new Rectangle(rightBorderX, send.y,
+				lifelineXEnd - rightBorderX, receive.y - send.y), AlignHorizontal.LEFT, AlignVertical.CENTER);
 	}
 
 	@Override

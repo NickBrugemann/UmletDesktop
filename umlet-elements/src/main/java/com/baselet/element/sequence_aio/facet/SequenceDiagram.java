@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.baselet.control.basics.geom.DimensionDouble;
 import com.baselet.control.basics.geom.PointDouble;
+import com.baselet.control.basics.geom.Rectangle;
 import com.baselet.control.enums.AlignHorizontal;
 import com.baselet.control.enums.AlignVertical;
 import com.baselet.diagram.draw.DrawHandler;
@@ -149,8 +150,8 @@ public class SequenceDiagram {
 
 		// draw description
 		double descHeight = TextSplitter.getSplitStringHeight(descLines, diagramWidth - DESCRIPTION_H_PADDING * 2, drawHandler);
-		TextSplitter.drawText(drawHandler, descLines, DESCRIPTION_H_PADDING, headerHeight + DESCRIPTION_V_PADDING,
-				diagramWidth - DESCRIPTION_H_PADDING * 2, descHeight, AlignHorizontal.LEFT, AlignVertical.CENTER);
+		TextSplitter.drawText(drawHandler, descLines, new Rectangle(DESCRIPTION_H_PADDING, headerHeight + DESCRIPTION_V_PADDING,
+				diagramWidth - DESCRIPTION_H_PADDING * 2, descHeight), AlignHorizontal.LEFT, AlignVertical.CENTER);
 
 		double lifelineHeadTop = headerHeight + descHeight + DESCRIPTION_H_PADDING * 2 + LIFELINE_Y_PADDING;
 		double lifelineHeadHeight = getLifelineHeadHeight(drawHandler, horizontalDrawingInfo);
