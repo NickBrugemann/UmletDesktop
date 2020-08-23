@@ -90,7 +90,11 @@ public class Line {
 			direction = Direction.UP;
 		}
 		if (!directionOfStart) {
-			direction = direction.invert();
+			try {
+				direction = direction.invert();
+			} catch (Exception e) {
+
+			}
 		}
 		return direction;
 	}
